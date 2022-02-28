@@ -1,4 +1,12 @@
 <odoo>
     <menuitem id="rest_main_menu" name="Restaurant"/>
-    <menuitem id="rest_staff_submenu" name="Our Team" parent="restaurant_project.rest_main_menu" action="restaurant_project.rest_staff_action_id"/>
+    <menuitem id="rest_staff_submenu" name="Our Team" parent="restaurant_project.rest_main_menu" sequence="10"/>
+
+    <menuitem id="rest_staff_all_records_submenu" name="All records" parent="restaurant_project.rest_staff_submenu" sequence="1"
+              action="restaurant_project.rest_staff_action_id"/>
+    <menuitem id="rest_staff_male_records_submenu" name="Male Team" parent="restaurant_project.rest_staff_submenu" sequence="2"
+              action="restaurant_project.rest_staff_male_action_id"/>
+    <menuitem id="rest_staff_female_records_submenu" name="Female Team" parent="restaurant_project.rest_staff_submenu" sequence="3"
+              action="restaurant_project.rest_staff_female_action_id"/>
+
 </odoo>

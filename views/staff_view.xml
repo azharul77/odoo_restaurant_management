@@ -26,7 +26,8 @@
                 <field name="id"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click" style="height: 135px; background-color: #ccff99; color: #006600;">
+                        <div class="oe_kanban_global_click"
+                             style="height: 135px; background-color: #ccff99; color: #006600;">
                             <div style="width:30%; float:left; display: inline-block">
                                 <img alt="Avatar" t-att-src="kanban_image('rest.staff','image',record.id.raw_value)"
                                      style="width: 100px; height: 120px;"/>
@@ -134,12 +135,16 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
 
     <record id="rest_staff_action_id" model="ir.actions.act_window">
-        <field name="name">Our Team</field>
+        <field name="name">All Team</field>
         <field name="res_model">rest.staff</field>
         <field name="view_mode">tree,form,search,kanban</field>
         <field name="help" type="html">
@@ -147,7 +152,32 @@
                 Create New Staff
             </p>
         </field>
-        <field name="context">{'search_default_male':1, 'search_default_female':1}</field>
+    </record>
+
+    <record id="rest_staff_male_action_id" model="ir.actions.act_window">
+        <field name="name">Male Team</field>
+        <field name="res_model">rest.staff</field>
+        <field name="view_mode">tree,form,search,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create New Staff
+            </p>
+        </field>
+        <field name="domain">[('gender', '=', 'male')]</field>
+        <field name="context">{'default_gender':'male', 'search_default_male':1}</field>
+    </record>
+
+    <record id="rest_staff_female_action_id" model="ir.actions.act_window">
+        <field name="name">Female Team</field>
+        <field name="res_model">rest.staff</field>
+        <field name="view_mode">tree,form,search,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create New Staff
+            </p>
+        </field>
+        <field name="domain">[('gender', '=', 'female')]</field>
+        <field name="context">{'default_gender':'female', 'search_default_female':1}</field>
     </record>
 
 </odoo>

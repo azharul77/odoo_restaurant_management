@@ -4,6 +4,7 @@ class RestStaff(models.Model):
     _name = 'rest.staff'
     _description = "This model will store the data of staff"
     _rec_name = 'full_name'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'age desc'
 
     def new_fun(self):
@@ -25,11 +26,11 @@ class RestStaff(models.Model):
         for rec in self:
             rec.status = 'resigned'
 
-    full_name = fields.Char(string="Name", size=50, required=True)
+    full_name = fields.Char(string="Name", size=50, required=True, track_visibility='always')
     age = fields.Integer(string="Age")
     dob = fields.Date(string="DOB")
-    mobile = fields.Char(string="Mobile")
-    email = fields.Char(string="Email")
+    mobile = fields.Char(string="Mobile", track_visibility='always')
+    email = fields.Char(string="Email",  track_visibility='always')
     country_id = fields.Many2one('res.country', string="Country")
     country_ids = fields.Many2many('res.country', string="Countries")
     country_code = fields.Char(string="Country Code", related="country_id.code")

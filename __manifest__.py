@@ -9,7 +9,7 @@
     'category': 'sale and Invoicing',
     'website': 'https://www.odoo.com/page/billing',
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['base'],
+    'depends' : ['base', 'mail'],
     'data': ['security/ir.model.access.csv',
         'views/staff_view.xml',
         'views/menu_view.xml',
