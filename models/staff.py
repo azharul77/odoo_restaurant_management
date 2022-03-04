@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class RestStaff(models.Model):
     _name = 'rest.staff'
@@ -26,6 +27,12 @@ class RestStaff(models.Model):
         for rec in self:
             rec.status = 'resigned'
 
+    @api.constrains('age')
+    def val_age(self):
+        for rec in self:
+            if rec.age <= 18:
+                raise ValidationError(_(" The age must be above than 18"))
+
     full_name = fields.Char(string="Name", size=50, required=True, track_visibility='always')
     age = fields.Integer(string="Age")
     dob = fields.Date(string="DOB")
@@ -40,6 +47,19 @@ class RestStaff(models.Model):
     status = fields.Selection([('active', 'Active'), ('resigned', 'Resigned')], string="Status", readonly=True,
                               default="active")
     image = fields.Binary(string="Image")
+    hand_salary = fields.Float(string="In Hand Salary")
+    epf_esi = fields.Float(string="EPF+ESI")
+    ctc_salary = fields.Float(string="CTC", compute="calc_ctc")
+
+    @api.depends('hand_salary', 'epf_esi')
+    def calc_ctc(self):
+        for record in self:
+            ctc = 0
+            if record.hand_salary:
+                ctc = ctc + record.hand_salary
+            if record.epf_esi:
+                ctc = ctc + record.epf_esi
+            record.ctc_salary = ctc
 
 
 class RestStaffLine(models.Model):
