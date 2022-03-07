@@ -22,6 +22,47 @@ class RestStaff(models.Model):
                         'message': 'Record had been deleted successfully'
                     }
                 }
+# search method apply
+
+    def check_orm(self):
+        search_var = self.env['rest.staff'].search(['|', ('status', '=', 'active'), ('gender', '=', 'male')])
+        for rec in search_var:
+            print("Full Name:############", rec.full_name, 'gender: $$$$$$$$$$', rec.gender)
+
+# search count method apply
+
+    def check_orm(self):
+        searchCount = self.env['rest.staff'].search_count([])
+        print("Total Search Count: ######", searchCount)
+# browser method apply
+
+    def check_orm(self):
+        browse_var = self.env['rest.staff'].browse([12, 9])
+        for rec in browse_var:
+            print("Browse Var: ############", rec, "Name: ", rec.full_name, "age: ", rec.age, "gender: ", rec.gender)
+
+# ref method apply
+    def check_orm(self):
+        ref_var = self.env.ref('restaurant_project.rest_staff_form_view_id')
+        print("Ref id: ##########", ref_var.model_data_id, "name: ", ref_var.name)
+
+# create method apply
+
+    def check_orm(self):
+        create_var = self.env['rest.staff'].create({
+            "full_name": "Function Record",
+            "age": 100,
+            "mobile": '01761970239'
+        })
+        print("create_var##########3", create_var.id)
+
+    def check_orm(self):
+        write_var = self.env['rest.staff'].browse(6)
+        write_var.write({
+            "full_name": "Test Write",
+            "age": 88,
+            "mobile": '01761970239'
+        })
 
     def do_resign(self):
         for rec in self:
