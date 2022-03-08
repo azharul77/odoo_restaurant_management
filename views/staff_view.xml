@@ -17,6 +17,20 @@
             </tree>
         </field>
     </record>
+<!--    pivot view-->
+    <record id="rest_staff_pivot_view_id" model="ir.ui.view">
+        <field name="name">rest.staff.pivot.view.id</field>
+        <field name="model">rest.staff</field>
+        <field name="arch" type="xml">
+            <pivot string="Staff Pivot">
+                <field name="full_name"/>
+                <field name="age"/>
+                <field name="dob"/>
+                <field name="gender"/>
+            </pivot>
+        </field>
+    </record>
+
 
     <record id="rest_staff_kanban_view_id" model="ir.ui.view">
         <field name="name">rest.staff.kanban.view.id</field>
@@ -163,7 +177,7 @@
     <record id="rest_staff_action_id" model="ir.actions.act_window">
         <field name="name">All Team</field>
         <field name="res_model">rest.staff</field>
-        <field name="view_mode">tree,form,search,kanban</field>
+        <field name="view_mode">tree,form,search,kanban,pivot</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create New Staff
