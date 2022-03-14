@@ -21,7 +21,7 @@ class TestModule(common.TransactionCase):
         })
         print(test_staff, test_ctc+"Staff created")
 
-    def limitation(self):
+    def test_limitation(self):
         hand_salary_status = self.env['rest.staff'].search([('hand_salary', '<', 5000)])
         for rec in hand_salary_status:
             print("Full Name:############", rec.full_name, 'gender: $$$$$$$$$$', rec.gender)

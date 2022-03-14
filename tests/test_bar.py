@@ -6,7 +6,7 @@ import odoo
 from odoo import api
 from odoo.modules.registry import Registry
 from odoo.sql_db import BaseCursor, Cursor
-
+from odoo.tests import BaseCase
 
 
 class TransactionCase(BaseCase):
