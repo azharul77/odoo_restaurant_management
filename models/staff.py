@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 class RestStaff(models.Model):
     _name = 'rest.staff'
     _description = "This model will store the data of staff"
-    _rec_name = 'full_name'
+    _rec_name = 'name'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'age desc'
 
@@ -24,45 +24,45 @@ class RestStaff(models.Model):
                 }
 # search method apply
 
-    def check_orm(self):
-        search_var = self.env['rest.staff'].search(['|', ('status', '=', 'active'), ('gender', '=', 'male')])
-        for rec in search_var:
-            print("Full Name:############", rec.full_name, 'gender: $$$$$$$$$$', rec.gender)
+    # def check_orm(self):
+    #     search_var = self.env['rest.staff'].search(['|', ('status', '=', 'active'), ('gender', '=', 'male')])
+    #     for rec in search_var:
+    #         print("Full Name:############", rec.full_name, 'gender: $$$$$$$$$$', rec.gender)
 
 # search count method apply
 
-    def check_orm(self):
-        searchCount = self.env['rest.staff'].search_count([])
-        print("Total Search Count: ######", searchCount)
+    # def check_orm(self):
+    #     searchCount = self.env['rest.staff'].search_count([])
+    #     print("Total Search Count: ######", searchCount)
 # browser method apply
 
-    def check_orm(self):
-        browse_var = self.env['rest.staff'].browse([12, 9])
-        for rec in browse_var:
-            print("Browse Var: ############", rec, "Name: ", rec.full_name, "age: ", rec.age, "gender: ", rec.gender)
+    # def check_orm(self):
+    #     browse_var = self.env['rest.staff'].browse([12, 9])
+    #     for rec in browse_var:
+    #         print("Browse Var: ############", rec, "Name: ", rec.full_name, "age: ", rec.age, "gender: ", rec.gender)
 
 # ref method apply
-    def check_orm(self):
-        ref_var = self.env.ref('restaurant_project.rest_staff_form_view_id')
-        print("Ref id: ##########", ref_var.model_data_id, "name: ", ref_var.name)
+    # def check_orm(self):
+    #     ref_var = self.env.ref('restaurant_project.rest_staff_form_view_id')
+    #     print("Ref id: ##########", ref_var.model_data_id, "name: ", ref_var.name)
 
 # create method apply
 
-    def check_orm(self):
-        create_var = self.env['rest.staff'].create({
-            "full_name": "Function Record",
-            "age": 100,
-            "mobile": '01761970239'
-        })
-        print("create_var##########3", create_var.id)
+    # def check_orm(self):
+    #     create_var = self.env['rest.staff'].create({
+    #         "full_name": "Function Record",
+    #         "age": 100,
+    #         "mobile": '01761970239'
+    #     })
+    #     print("create_var##########3", create_var.id)
 
-    def check_orm(self):
-        write_var = self.env['rest.staff'].browse(6)
-        write_var.write({
-            "full_name": "Test Write",
-            "age": 88,
-            "mobile": '01761970239'
-        })
+    # def check_orm(self):
+    #     write_var = self.env['rest.staff'].browse(6)
+    #     write_var.write({
+    #         "full_name": "Test Write",
+    #         "age": 88,
+    #         "mobile": '01761970239'
+    #     })
 
     def do_resign(self):
         for rec in self:
@@ -74,7 +74,7 @@ class RestStaff(models.Model):
             if rec.age <= 18:
                 raise ValidationError(_(" The age must be above than 18"))
 
-    full_name = fields.Char(string="Name", size=50, required=True, track_visibility='always')
+    name = fields.Char(string="Name", size=50, required=True, track_visibility='always')
     age = fields.Integer(string="Age")
     dob = fields.Date(string="DOB")
     mobile = fields.Char(string="Mobile", track_visibility='always')

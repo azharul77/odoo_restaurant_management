@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree string="Staff Tree" decoration-success="status=='active'" decoration-warning="status=='resigned'">
                 <field name="sequence" widget="handle"/>
-                <field name="full_name"/>
+                <field name="name"/>
                 <field name="age"/>
                 <field name="dob"/>
                 <field name="mobile"/>
@@ -23,7 +23,7 @@
         <field name="model">rest.staff</field>
         <field name="arch" type="xml">
             <pivot string="Staff Pivot">
-                <field name="full_name"/>
+                <field name="name"/>
                 <field name="age"/>
                 <field name="dob"/>
                 <field name="gender"/>
@@ -50,7 +50,7 @@
                                 <ul style="list-style-type:none;">
                                     <li>
                                         <b>Name:</b>
-                                        <field name="full_name"/>
+                                        <field name="name"/>
                                     </li>
                                     <li>
                                         <b>Age:</b>
@@ -78,7 +78,7 @@
         <field name="model">rest.staff</field>
         <field name="arch" type="xml">
             <search string="Staff Search">
-                <field name="full_name"/>
+                <field name="name"/>
                 <field name="age"/>
                 <field name="mobile"/>
                 <field name="email" filter_domain="['|',('mobile','ilike','self'),('email','ilike','self']"/>
@@ -104,7 +104,7 @@
                 <header>
                     <button name="new_fun" string="Pass a Value Button" type="object" class="oe_highlight"/>
                     <button name="delete_one2many" string="Delete line" type="object" class="oe_highlight"/>
-                    <button name="check_orm" string="Check ORM" type="object" class="oe_highlight"/>
+                    <!-- <button name="check_orm" string="Check ORM" type="object" class="oe_highlight"/> -->
                     <field name="status" widget="statusbar"/>
                     <button name="do_resign" string="Resigned" type="object" class="oe_highlight"
                             attrs="{'invisible': [('status', '!=', 'active')]}"/>
@@ -113,7 +113,7 @@
                     <field name="image" widget="image" style="width:100px; height:100px"/>
                     <group>
                         <group>
-                            <field name="full_name"/>
+                            <field name="name"/>
                             <field name="age"/>
                             <field name="dob"/>
                             <field name="country_ids" widget="many2many_tags"/>
