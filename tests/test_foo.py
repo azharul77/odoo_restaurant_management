@@ -44,11 +44,11 @@ class TestModule(common.TransactionCase):
     # creating test method2
     # age goes throug conditonal helper 
 
-    @api.onchange('age')
+    # @api.onchange('age')
     def test_age(self):
-        for name_id in self:
-            if name_id.age > 100:
-                print("The person is much older",name_id.name)
+        age_cond = self.env['rest.staff'].search([('age', '>', '100'),])
+        for rec in age_cond:
+            print("&&&&&&&&&&&&&&&&&&",rec.name)
                
 #  a practice testing method, have some issues,need to fix this.             
 
