@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_rest_staff,rest.staff,model_rest_staff,base.group_user,1,1,1,1
 access_rest_staff_lines,rest.staff.lines,model_rest_staff_lines,base.group_user,1,1,1,1
+access_project_task_details,project.task.details,model_project_task_details,base.group_user,1,1,1,1
+access_rest_post,rest.post,model_rest_post,base.group_user,1,1,1,1
